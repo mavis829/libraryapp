@@ -47,7 +47,16 @@ const libraryEl = document.querySelector("#library");
 
 function displayBooks() {
   // TODO: empty libraryEl first, or you'll get duplicates every time you call it
+   libraryEl.innerHTML = "";
+   
   // TODO: loop over myLibrary and build one card per book
+   myLibrary.forEach((book) => {
+    const card = document.createElement("div");
+      card.classList.add("book-card");
+      card.dataset.id = book.id;
+      card.innerHTML = `...`;
+      libraryEl.appendChild(card);
+   });
   // TODO: put each book's id on its card, e.g. card.dataset.id = book.id
   //       (that's the thread that ties a DOM element back to its object)
   // Look at the example card in index.html for the shape to aim for.
