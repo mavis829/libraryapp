@@ -1,0 +1,147 @@
+/* =========================================================
+   My Library - base styles
+   Change anything you like. This is only here so you can
+   focus on the JavaScript first.
+   ========================================================= */
+
+:root {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --ink: #1a1f26;
+  --ink-soft: #5b6672;
+  --line: #d9dee4;
+  --accent: #2f6f4f;
+  --accent-ink: #ffffff;
+  --danger: #a8332b;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 24px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+/* ---------- header ---------- */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 1000px;
+  margin: 0 auto 28px;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+/* ---------- the grid of books ---------- */
+.library {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.book-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.book-title  { margin: 0; font-size: 1.1rem; }
+.book-author { margin: 0; color: var(--ink-soft); }
+.book-pages  { margin: 0; color: var(--ink-soft); font-size: .9rem; }
+
+.book-status {
+  margin: 8px 0 0;
+  font-size: .85rem;
+  font-weight: 600;
+}
+.book-status.read     { color: var(--accent); }
+.book-status.not-read { color: var(--ink-soft); }
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  font: inherit;
+  font-size: .88rem;
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+.btn:hover { border-color: var(--ink-soft); }
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn-remove { color: var(--danger); border-color: var(--danger); }
+
+/* ---------- the dialog ---------- */
+dialog {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  min-width: 300px;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+dialog::backdrop { background: rgba(0, 0, 0, .45); }
+
+dialog h2 { margin: 0 0 16px; font-size: 1.2rem; }
+
+dialog form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+dialog label { font-size: .85rem; font-weight: 600; }
+
+dialog input[type="text"],
+dialog input[type="number"] {
+  font: inherit;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  margin-bottom: 8px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 16px;
+}
+.checkbox-row label { font-weight: 400; }
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
