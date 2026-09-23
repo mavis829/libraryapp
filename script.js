@@ -84,8 +84,15 @@ const newBookBtn = document.querySelector("#new-book-btn");
 const cancelBtn = document.querySelector("#cancel-btn");
 
 // TODO: clicking newBookBtn should open the dialog        -> dialog.showModal()
-// TODO: clicking cancelBtn should close it                -> dialog.close()
+newBookBtn.addEventListener("click", () => {
+  dialog.showModal();
+});
 
+
+// TODO: clicking cancelBtn should close it                -> dialog.close()
+cancelBtn.addEventListener("click", () => {
+  dialog.close();
+});
 
 /* ---------------------------------------------------------
    STEP 4 - handling the form
@@ -94,6 +101,21 @@ const cancelBtn = document.querySelector("#cancel-btn");
 // TODO: listen for "submit" on the form
 //       1. stop the browser from trying to send it to a server
 //          -> look up event.preventDefault()
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const title = document.querySelector("#title").value;
+  const author = document.querySelector("#author").value;
+  const pages = Number(document.querySelector("#pages").value);
+  const read = document.querySelector("#read").checked;
+
+  addBookToLibrary(title, author, pages, read);
+  displayBooks();
+
+  form.reset();
+  dialog.close();
+});
 //       2. read the values out of the inputs
 //          (careful: a number input still gives you a STRING,
 //           and a checkbox uses .checked, not .value)
@@ -116,11 +138,29 @@ const cancelBtn = document.querySelector("#cancel-btn");
 //       Remove  -> take that book out of the array, then displayBooks()
 //       Toggle  -> call the prototype method you wrote in Step 1, then displayBooks()
 
+libraryEl.addEventListener("click", (event) => {
+  const card = event.target.closest(".book-card");
+  if (!card) return;
+
+  const id = card.dataset.id;
+
+  if (event.target.classList.contains("btn-remove")) {
+    const index = myLibrary.findIndex((book) => book.id === id);
+    myLibrary.splice(index, 1);
+    displayBooks();
+  }
+
+  if (event.target.classList.contains("btn-toggle")) {
+    const book = myLibrary.find((book) => book.id === id);
+    book.toggleRead();
+    displayBooks();
+  }
+});
 
 /* ---------------------------------------------------------
    Test data - uncomment once Step 1 works
    --------------------------------------------------------- */
 
-// addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
-// addBookToLibrary("Dune", "Frank Herbert", 412, true);
-// displayBooks();
+ addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
+ addBookToLibrary("Dune", "Frank Herbert", 412, true);
+ displayBooks();
