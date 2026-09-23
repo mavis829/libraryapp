@@ -13,19 +13,28 @@
 
 const myLibrary = [];
 
-function Book(/* what does a book need to know about itself? */) {
+function Book(author, title, pages, read/* what does a book need to know about itself? */) {
   // TODO: assign each parameter onto `this`
+   this.author = author;
+   this.title = title;
+   this.pages = pages;
+   this.read = read;
   // TODO: give every book a unique id - crypto.randomUUID()
+   this.id = crypto.randomUUID();
   //       (run crypto.randomUUID() in the console to see what it returns)
 }
 
 // TODO: add a method to Book.prototype that flips this.read
 //       The lesson asks for it on the PROTOTYPE, not inside the constructor.
 //       Remember why: one shared copy, and `this` is whoever called it.
+Book.prototype.toggleRead = function() {
+   this.read = !this.read;
+}
 
-
-function addBookToLibrary(/* same info the Book needs */) {
+function addBookToLibrary(author, title, pages, read/* same info the Book needs */) {
   // TODO: create a new Book from the arguments, then push it into myLibrary
+   const book = new Book(title, author, pages, read); 
+   myLibrary.push(book);
   // Note: this lives OUTSIDE the constructor, on purpose.
 }
 
