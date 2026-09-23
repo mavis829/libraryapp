@@ -54,7 +54,18 @@ function displayBooks() {
     const card = document.createElement("div");
       card.classList.add("book-card");
       card.dataset.id = book.id;
-      card.innerHTML = `...`;
+      card.innerHTML = `<h2 class="book-title">${book.title}</h2>
+  <p class="book-author">${book.author}</p>
+  <p class="book-pages">${book.pages} pages</p>
+  <p class="book-status ${book.read ? "read" : "not-read"}">
+    ${book.read ? "Read" : "Not read yet"}
+  </p>
+  <div class="card-actions">
+    <button class="btn btn-toggle" type="button">
+      ${book.read ? "Mark as unread" : "Mark as read"}
+    </button>
+    <button class="btn btn-remove" type="button">Remove</button>
+  </div>`;
       libraryEl.appendChild(card);
    });
   // TODO: put each book's id on its card, e.g. card.dataset.id = book.id
